@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "./styles/themes/defaul";
+import {GlobalStyle} from "./styles/global"
 
-
-function App() {
+export function App() {
  
 
   return (
-    <h1>ola mundo</h1>
+    <ThemeProvider theme={defaultTheme}>
+      <GlobalStyle/>
+        <h1>ola mundo</h1>
+    </ThemeProvider>
   )
 }
 
-export default App
+
+
