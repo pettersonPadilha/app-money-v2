@@ -1,4 +1,5 @@
 import { Children, createContext, ReactNode, useEffect, useState } from "react";
+import { api } from "../lib/axios";
 
 
 interface TransactionProps {
@@ -30,15 +31,14 @@ export function TransactionProvider({children}:TransactionProviderProps) {
     const [transactions , setTransaction] = useState<TransactionProps[]>([]);
 
     async function fetchTransactions(query?:string) {
-        const url = new URL("http://localhost:3333/transaction");
-
-        if(query) {
-            url.searchParams.append('q',query);
+       const response = await  api.get("/transaction", {
+        params: {
+            q:query
         }
+       })
 
-        const response = await fetch(url)
-        const data = await response.json();
-        setTransaction(data);
+
+        setTransaction(response.data);
     }
     
     useEffect(() => {
