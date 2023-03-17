@@ -1,33 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
+import { TransactionContext } from "../../contexts/TransactionContext";
 import { SearchForm } from "./components/SearchForm";
 import { PriceHighLight, TransactionsContainer, TransactionsTable } from "./styles";
 
 export function Transaction() {
 
-    interface TransactionProps {
-        id:number;
-        description:string;
-        category: string;
-        price:number;
-        type: 'income' | 'outcome';
-        createdAt: string;
-    }
-
-    const [transaction , setTransaction] = useState<TransactionProps[]>([]);
-
-    async function loadTransactions() {
-        const response = await fetch("http://localhost:3333/transaction")
-        const data = await response.json();
-        setTransaction(data);
-    }
-    
-    useEffect(() => {
-        loadTransactions();
-    },[])
-
-
+    const {transactions} = useContext(TransactionContext)
+  
     return(
         <div>
             <Header/>
@@ -38,7 +19,7 @@ export function Transaction() {
                 <SearchForm/>
                 <TransactionsTable>
                     <tbody>
-                        {transaction.map(item => {
+                        {transactions.map(item => {
                             return(
                                 <tr key={item.id}>
                                 <td width="50%">{item.description}</td>
