@@ -22,15 +22,11 @@ export function Transaction() {
                         {transactions.map(item => {
                             return(
                                 <tr key={item.id}>
-                                <td width="50%">{item.description}</td>
-                                    <td>
-                                        <PriceHighLight variant={item.type}>
-                                           {item.price}
-                                        </PriceHighLight>
-                                    </td>
-                                <td>{item.category}</td>
-                                <td>{item.createdAt}</td>
-                            </tr>
+                                    <td width="50%">{item.description}</td>
+                                    <td> <PriceHighLight variant={item.type}> {item.price} </PriceHighLight></td>
+                                    <td>{item.category}</td>
+                                    <td>{item.createdAt}</td>
+                                </tr>
                             )
                         })}
                     </tbody>
