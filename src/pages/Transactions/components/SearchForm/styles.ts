@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const SearchFormContainer = styled.form`
     display: flex;
     gap: 1rem;
+    
+    
 
     input {
         flex: 1;
@@ -15,6 +17,17 @@ export const SearchFormContainer = styled.form`
         &::placeholder {
             color: ${props => props.theme["gray-500"]};
         }
+
+        @media(max-width:720px) {
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+
+                &::placeholder {
+                    text-align: center;
+                }
+            };
+    
     }
 
     button {
@@ -30,6 +43,13 @@ export const SearchFormContainer = styled.form`
             border-radius: 6px;
             cursor: pointer;
 
+            @media(max-width:720px) {
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+            };
+            
+
             &:disabled {
                 opacity: 0.7;
                 cursor: not-allowed;
@@ -42,5 +62,11 @@ export const SearchFormContainer = styled.form`
                 transition: background-color 0.2s, color 0.2s, border-color 0.2s
             }
         }
+
+        @media(max-width:720px) {
+        gap: 1rem;
+        flex-direction: column;
+        text-align: center;
+    };
 
 `
